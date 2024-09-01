@@ -1,0 +1,11 @@
+/Library
+/Temp
+/.vs
+*.unityproj
+*.csproj
+*.sln
+/obj
+/.vscode
+/*.userprefs
+/*.user
+/Documentation
