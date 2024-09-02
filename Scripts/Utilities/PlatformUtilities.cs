@@ -62,7 +62,7 @@ namespace UnityGameLib.Utilities {
 					return PLATFORM_NAME_WINDOWS;
 				case BuildTarget.StandaloneOSXIntel:
 				case BuildTarget.StandaloneOSXIntel64:
-				case BuildTarget.StandaloneOSXUniversal:
+				case BuildTarget.StandaloneOSX:
 					return PLATFORM_NAME_MAC_OSX;
 				case BuildTarget.StandaloneLinuxUniversal:
 				case BuildTarget.StandaloneLinux:
@@ -94,7 +94,7 @@ namespace UnityGameLib.Utilities {
 				return BuildTargetGroup.iOS;
 
 			if (platform == BuildTarget.StandaloneWindows || platform == BuildTarget.StandaloneWindows64
-				|| platform == BuildTarget.StandaloneOSXIntel || platform == BuildTarget.StandaloneOSXIntel64 || platform == BuildTarget.StandaloneOSXUniversal
+				|| platform == BuildTarget.StandaloneOSXIntel || platform == BuildTarget.StandaloneOSXIntel64 || platform == BuildTarget.StandaloneOSX
 				|| platform == BuildTarget.StandaloneLinux || platform == BuildTarget.StandaloneLinux64 || platform == BuildTarget.StandaloneLinuxUniversal)
 				return BuildTargetGroup.Standalone;
 
@@ -139,7 +139,7 @@ namespace UnityGameLib.Utilities {
 				case BuildTarget.StandaloneWindows:
 				case BuildTarget.StandaloneWindows64:
 					return ".exe";
-				case BuildTarget.StandaloneOSXUniversal:
+				case BuildTarget.StandaloneOSX:
 				case BuildTarget.StandaloneOSXIntel:
 				case BuildTarget.StandaloneOSXIntel64:
 					return ".app";

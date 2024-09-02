@@ -233,7 +233,7 @@ namespace UnityGameLib.Net {
 		public RequestWrapper RetrieveManifest() {
 			_manifestRequest = new RequestWrapper(_platformName);
 			_manifestRequest.requestFactory = () => {
-				return UnityWebRequest.GetAssetBundle(_urlPrefix + platformURLFragment + _platformName);
+				return UnityWebRequestAssetBundle.GetAssetBundle(_urlPrefix + platformURLFragment + _platformName);
 			};
 			_manifestRequest.maxAttempts = _maxAttemptCount;
 			_manifestRequest.onSuccess.AddListener(RetrieveManifest_OnSuccess);
@@ -273,7 +273,7 @@ namespace UnityGameLib.Net {
 				wrapper = new RequestWrapper(bundleName);
 				wrapper.maxAttempts = _maxAttemptCount;
 				wrapper.requestFactory = () => {
-					return UnityWebRequest.GetAssetBundle(_urlPrefix + platformURLFragment + bundleName, _manifest.GetAssetBundleHash(bundleName), 0);
+					return UnityWebRequestAssetBundle.GetAssetBundle(_urlPrefix + platformURLFragment + bundleName, _manifest.GetAssetBundleHash(bundleName), 0);
 				};
 
 				QueueRequest(wrapper);
