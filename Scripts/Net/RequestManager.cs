@@ -165,7 +165,7 @@ namespace UnityGameLib.Net {
 			if (!_activeRequests.Remove(wrapper))
 				return false;
 
-			if (wrapper.request.isNetworkError) {
+			if (wrapper.request.result == UnityWebRequest.Result.ConnectionError) {
 				FailRequest(wrapper, wrapper.request.error);
 			} else if (wrapper.request.responseCode >= 400 || wrapper.request.responseCode < 0) {
 				FailRequest(wrapper, "Response Code " + wrapper.request.responseCode);

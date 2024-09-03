@@ -175,7 +175,7 @@ namespace UnityGameLib.UI {
 				}
 
 				string path = UnityEditor.AssetDatabase.GUIDToAssetPath(guids[0]);
-				return UnityEditor.EditorApplication.LoadLevelAsyncInPlayMode(path);
+				return UnityEditor.SceneManagement.EditorSceneManager.LoadSceneAsyncInPlayMode(path, new LoadSceneParameters(LoadSceneMode.Single));
 			}
 			#endif
 

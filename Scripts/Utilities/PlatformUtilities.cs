@@ -60,12 +60,8 @@ namespace UnityGameLib.Utilities {
 				case BuildTarget.StandaloneWindows:
 				case BuildTarget.StandaloneWindows64:
 					return PLATFORM_NAME_WINDOWS;
-				case BuildTarget.StandaloneOSXIntel:
-				case BuildTarget.StandaloneOSXIntel64:
 				case BuildTarget.StandaloneOSX:
 					return PLATFORM_NAME_MAC_OSX;
-				case BuildTarget.StandaloneLinuxUniversal:
-				case BuildTarget.StandaloneLinux:
 				case BuildTarget.StandaloneLinux64:
 					return PLATFORM_NAME_LINUX;
 				default:
@@ -93,9 +89,7 @@ namespace UnityGameLib.Utilities {
 			if (platform == BuildTarget.iOS)
 				return BuildTargetGroup.iOS;
 
-			if (platform == BuildTarget.StandaloneWindows || platform == BuildTarget.StandaloneWindows64
-				|| platform == BuildTarget.StandaloneOSXIntel || platform == BuildTarget.StandaloneOSXIntel64 || platform == BuildTarget.StandaloneOSX
-				|| platform == BuildTarget.StandaloneLinux || platform == BuildTarget.StandaloneLinux64 || platform == BuildTarget.StandaloneLinuxUniversal)
+			if (platform == BuildTarget.StandaloneWindows || platform == BuildTarget.StandaloneWindows64 || platform == BuildTarget.StandaloneOSX || platform == BuildTarget.StandaloneLinux64)
 				return BuildTargetGroup.Standalone;
 
 			if (platform == BuildTarget.WebGL)
@@ -105,23 +99,12 @@ namespace UnityGameLib.Utilities {
 				return BuildTargetGroup.XboxOne;
 			if (platform == BuildTarget.PS4)
 				return BuildTargetGroup.PS4;
-			if (platform == BuildTarget.WiiU)
-				return BuildTargetGroup.WiiU;
-
-			if (platform == BuildTarget.PSP2)
-				return BuildTargetGroup.PSP2;
 
 			if (platform == BuildTarget.WSAPlayer)
 				return BuildTargetGroup.WSA;
 
 			if (platform == BuildTarget.tvOS)
 				return BuildTargetGroup.tvOS;
-
-			if (platform == BuildTarget.SamsungTV)
-				return BuildTargetGroup.SamsungTV;
-
-			if (platform == BuildTarget.Tizen)
-				return BuildTargetGroup.Tizen;
 
 			return BuildTargetGroup.Unknown;
 		}
@@ -140,11 +123,7 @@ namespace UnityGameLib.Utilities {
 				case BuildTarget.StandaloneWindows64:
 					return ".exe";
 				case BuildTarget.StandaloneOSX:
-				case BuildTarget.StandaloneOSXIntel:
-				case BuildTarget.StandaloneOSXIntel64:
 					return ".app";
-				case BuildTarget.StandaloneLinuxUniversal:
-				case BuildTarget.StandaloneLinux:
 				case BuildTarget.StandaloneLinux64:
 					return ".exe";
 				default:
