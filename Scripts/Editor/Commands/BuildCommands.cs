@@ -3,6 +3,7 @@ using UnityEditor;
 using System.Collections.Generic;
 using System.IO;
 using UnityGameLib.Utilities;
+using UnityEditor.Build;
 
 namespace UnityGameLib.Editor.Commands {
 	/// <summary>
@@ -129,10 +130,11 @@ namespace UnityGameLib.Editor.Commands {
 			string originalCompilerDefines = "";
 
 			BuildTargetGroup platformGroup = PlatformUtilities.GetPlatformGroup(platform);
+			NamedBuildTarget namedTarget = NamedBuildTarget.FromBuildTargetGroup(platformGroup);
 			if (platformGroup == BuildTargetGroup.Unknown) {
 				Debug.LogError("Unknown build target group.  Unable to set compiler flags.");
 			} else {
-				originalCompilerDefines = PlayerSettings.GetScriptingDefineSymbolsForGroup(platformGroup);
+				originalCompilerDefines = PlayerSettings.GetScriptingDefineSymbols(namedTarget);
 
 				if (platformGroup == BuildTargetGroup.Android) {
 					PlayerSettings.Android.keystorePass = ANDROID_KEYSTORE_PASS;
@@ -162,12 +164,13 @@ namespace UnityGameLib.Editor.Commands {
 			BuildPipeline.BuildPlayer(GetLevels(), path, platform, options);
 
 			if (platformGroup != BuildTargetGroup.Unknown) {
-				PlayerSettings.SetScriptingDefineSymbolsForGroup(platformGroup, originalCompilerDefines);
+				PlayerSettings.SetScriptingDefineSymbols(namedTarget, originalCompilerDefines);
 			}
 		}
 
 		public static void AddScriptingDefines(BuildTargetGroup platform, params string[] defines) {
-			string originalStr = PlayerSettings.GetScriptingDefineSymbolsForGroup(platform);
+			NamedBuildTarget namedTarget = NamedBuildTarget.FromBuildTargetGroup(platform);
+			string originalStr = PlayerSettings.GetScriptingDefineSymbols(namedTarget);
 			List<string> definesList = new List<string>(originalStr.Split(';'));
 
 			for (int i = 0, count = defines.Length; i < count; ++i) {
@@ -177,11 +180,12 @@ namespace UnityGameLib.Editor.Commands {
 			}
 
 			string resultStr = string.Join(";", definesList.ToArray());
-			PlayerSettings.SetScriptingDefineSymbolsForGroup(platform, resultStr);
+			PlayerSettings.SetScriptingDefineSymbols(namedTarget, resultStr);
 		}
 
 		public static void RemoveScriptingDefines(BuildTargetGroup platform, params string[] defines) {
-			string originalStr = PlayerSettings.GetScriptingDefineSymbolsForGroup(platform);
+			NamedBuildTarget namedTarget = NamedBuildTarget.FromBuildTargetGroup(platform);
+			string originalStr = PlayerSettings.GetScriptingDefineSymbols(namedTarget);
 			List<string> definesList = new List<string>(originalStr.Split(';'));
 
 			for (int i = 0, count = defines.Length; i < count; ++i) {
@@ -192,7 +196,7 @@ namespace UnityGameLib.Editor.Commands {
 			}
 
 			string resultStr = string.Join(";", definesList.ToArray());
-			PlayerSettings.SetScriptingDefineSymbolsForGroup(platform, resultStr);
+			PlayerSettings.SetScriptingDefineSymbols(namedTarget, resultStr);
 		}
 
 		private static string[] GetLevels() {
