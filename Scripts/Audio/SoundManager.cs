@@ -58,7 +58,6 @@ namespace UnityGameLib.Audio {
 			_unusedSources2D = new Stack<AudioSource>();
 			_activeSources = new List<AudioSource>();
 			_activeTimesRemaining = new List<float>();
-			_idMap = new SerializableDictionary<string, AudioClip>();
 
 			if (!_musicLayer) {
 				GameObject child = new GameObject("Music");
