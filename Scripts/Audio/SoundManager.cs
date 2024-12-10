@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityGameLib.Utilities;
+using UnityGameLib.Collections;
 
 namespace UnityGameLib.Audio {
 	/// <summary>
@@ -37,7 +38,8 @@ namespace UnityGameLib.Audio {
 		private float _musicFadeDuration = 0f;
 		private float _ambienceFadeDuration = 0f;
 
-		private Dictionary<string, AudioClip> _idMap;
+		[SerializeField, Dictionary]
+		private SerializableDictionary<string, AudioClip> _idMap;
 
 		/// <summary>A persistent AudioSource for playing music loops.</summary>
 		public AudioSource musicLayer {
@@ -56,7 +58,7 @@ namespace UnityGameLib.Audio {
 			_unusedSources2D = new Stack<AudioSource>();
 			_activeSources = new List<AudioSource>();
 			_activeTimesRemaining = new List<float>();
-			_idMap = new Dictionary<string, AudioClip>();
+			_idMap = new SerializableDictionary<string, AudioClip>();
 
 			if (!_musicLayer) {
 				GameObject child = new GameObject("Music");
